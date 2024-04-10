@@ -1,0 +1,41 @@
+$color-blue: #1c7ed6;
+
+.root {
+  &-header {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    border-bottom: 1px solid #ccc;
+    padding: 0px 10px;
+  }
+  &-link {
+    color: $color-blue;
+    text-decoration: none;
+  }
+  &-separator {
+    flex: 1 1 auto;
+  }
+  &-loader {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: $color-blue;
+    border: 2px solid white;
+    outline: 2px solid $color-blue;
+    border-radius: 45px;
+    animation-name: load;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+    animation-direction: alternate-reverse;
+  }
+}
+
+@keyframes load {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
