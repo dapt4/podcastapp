@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom'
 import { getPodcast } from '../../api/podcastApi'
 import './Detail.scss'
 import { EpisodeT } from '../../types/EpisodeT'
+import Description from '../../components/Description/Description'
+import Loader from '../../components/Loader/Loader'
 
 export default function Detail () {
   const { podcastId } = useParams()
@@ -19,27 +21,10 @@ export default function Detail () {
     const date = new Date(ts)
     return `${date.getHours()}:${date.getMinutes()}`
   }
-  console.log(data)
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) return <Loader />
   return (
     <section className='detail-view'>
-      <div className='description'>
-        <div className='description-image'>
-          <img src={data[0].artworkUrl100} alt={data[0].collectionName} />
-        </div>
-        <div className='description-title'>
-          <strong>{data[0].collectionCensoredName}</strong>
-          <i>by {data[0].collectionName}</i>
-        </div>
-        <div className='description-desc'>
-          <strong>
-            Description:
-          </strong>
-          <p>A podcast where musicians take apart their songs,
-            and price, tell the story of how they where made
-          </p>
-        </div>
-      </div>
+      <Description data={data[0]} />
       <div className='content'>
         <div className='content-title'>
           <strong>Episodes: {data.length - 1}</strong>

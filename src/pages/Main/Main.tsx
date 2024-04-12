@@ -4,6 +4,7 @@ import { PodcastSimple } from '../../types/PodcastT'
 import './Main.scss'
 import { ChangeEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Loader from '../../components/Loader/Loader'
 
 export default function Main () {
   const navigate = useNavigate()
@@ -22,7 +23,7 @@ export default function Main () {
       pod.artist.toLowerCase().includes(text.toLowerCase())
   })
   const handleClick = (id: string) => navigate(`/podcast/${id}`)
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) return <Loader />
   return (
     <>
       <div className='finder'>
