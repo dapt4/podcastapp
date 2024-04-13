@@ -1,18 +1,24 @@
+import { Link } from 'react-router-dom'
 import { PodcastDescriptionT } from '../../types/PodcastDescription'
 import './Description.scss'
 
 interface PropsType {
   data: PodcastDescriptionT
+  podcastId: string | undefined
 }
 
-export default function Description ({ data }:PropsType) {
+export default function Description ({ data, podcastId }:PropsType) {
   return (
     <div className='description'>
       <div className='description-image'>
-        <img src={data.artworkUrl100} alt={data.collectionName} />
+        <Link to={`/podcast/${podcastId}`}>
+          <img src={data.artworkUrl100} alt={data.collectionName} />
+        </Link>
       </div>
       <div className='description-title'>
-        <strong>{data.collectionCensoredName}</strong>
+        <Link to={`/podcast/${podcastId}`}>
+          <strong>{data.collectionCensoredName}</strong>
+        </Link>
         <i>by {data.collectionName}</i>
       </div>
       <div className='description-desc'>

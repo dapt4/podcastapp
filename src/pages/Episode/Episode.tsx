@@ -1,26 +1,14 @@
-import { useParams } from 'react-router-dom'
-import { getPodcast } from '../../api/podcastApi'
-import { useQuery } from '@tanstack/react-query'
 import Description from '../../components/Description/Description'
 import './Episode.scss'
-import { EpisodeD } from '../../types/EpisodeD'
 import Loader from '../../components/Loader/Loader'
+import useEpisode from '../../hooks/useEpisode'
 
 export default function Episode () {
-  const { podcastId, episodeId } = useParams()
-
-  const { isLoading, data } = useQuery({
-    queryKey: [podcastId],
-    queryFn: () => getPodcast(podcastId),
-    staleTime: 1000 * 60 * 60 * 24,
-    refetchInterval: 1000 * 60 * 60 * 24
-  })
-
-  const track = episodeId && data?.find((episode: EpisodeD) => episode.trackId === parseInt(episodeId))
+  const { isLoading, data, podcastId, track } = useEpisode()
   if (isLoading) return <Loader />
   return (
     <div className='layout'>
-      {data && <Description data={data[0]} />}
+      {data && <Description data={data[0]} podcastId={podcastId} />}
       {
         track && (
           <div className='episode'>
