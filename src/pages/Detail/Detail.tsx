@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom'
 import './Detail.scss'
-import { EpisodeT } from '../../types/EpisodeT'
 import Description from '../../components/Description/Description'
 import Loader from '../../components/Loader/Loader'
 import useDetail from '../../hooks/useDetail'

@@ -1,5 +1,3 @@
-import { useQuery } from '@tanstack/react-query'
-import { getPodcasts } from '../../api/podcastApi'
 import { PodcastSimple } from '../../types/PodcastT'
 import './Main.scss'
 import Loader from '../../components/Loader/Loader'
